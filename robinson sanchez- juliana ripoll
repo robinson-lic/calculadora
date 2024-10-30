@@ -1,0 +1,146 @@
+html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+ <script src="script.js"></script>
+<div class="calculator">
+    <div class="display" id="display">0</div>
+    <div class="buttons">
+        <button class="button" onclick="clearDisplay()">C</button>
+        <button class="button" onclick="deleteLast()">DEL</button>
+        <button class="button" onclick="inputOperator('%')">%</button>
+        <button class="button" onclick="inputOperator('/')">/</button>
+        <button class="button" onclick="inputNumber(7)">7</button>
+        <button class="button" onclick="inputNumber(8)">8</button>
+        <button class="button" onclick="inputNumber(9)">9</button>
+        <button class="button" onclick="inputOperator('*')">×</button>
+        <button class="button" onclick="inputNumber(4)">4</button>
+        <button class="button" onclick="inputNumber(5)">5</button>
+        <button class="button" onclick="inputNumber(6)">6</button>
+        <button class="button" onclick="inputOperator('-')">-</button>
+        <button class="button" onclick="inputNumber(1)">1</button>
+        <button class="button" onclick="inputNumber(2)">2</button>
+        <button class="button" onclick="inputNumber(3)">3</button>
+        <button class="button" onclick="inputOperator('+')">+</button>
+        <button class="button" onclick="inputNumber(0)">0</button>
+        <button class="button" onclick="inputOperator('.')">.</button>
+        <button class="button" onclick="calculate()">=</button>
+    </div>
+</div>
+
+</body>
+</html>
+js
+function clearScreen() {
+    document.getElementById("result").value = "";
+}
+
+function backspace() {
+    let value = document.getElementById("result").value;
+    document.getElementById("result").value = value.slice(0, -1);
+}
+
+function addToScreen(value) {
+    document.getElementById("result").value += value;
+}
+
+function calculate() {
+    let result = document.getElementById("result").value;
+    if (result) {
+        document.getElementById("result").value = eval(result);
+    }
+}
+css
+body {
+    background-color: #f4f4f4;
+    font-family: 'Helvetica Neue', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.calculator {
+    background-color: #720808;
+    border-radius: 20px;
+    padding: 20px;
+    width: 320px;
+}
+
+.display {
+    background-color: #333;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.display input {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-size: 48px;
+    width: 100%;
+    text-align: right;
+    outline: none;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.btn {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 24px;
+    padding: 20px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn.zero {
+    grid-column: span 2;
+}
+
+.btn.operator {
+    background-color: #ff9500;
+}
+
+.btn.equal {
+    background-color: #ff9500;
+}
+
+.btn.clear {
+    background-color: #ff3b30;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 375px) {
+    .calculator {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .display input {
+        font-size: 36px;
+    }
+
+    .btn {
+        padding: 15px;
+        font-size: 20px;
+    }
+}
